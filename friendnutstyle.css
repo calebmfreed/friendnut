@@ -19,18 +19,94 @@
 	height: 275px;
 	width: 275px;
 	border-radius: 50%;
-
 	border: 3px solid #60C3A2;
 }
 
-#personBubble{
-	position: relative;
-	margin:10px 50%;
+.bubble{
+	position: absolute;
+	margin:10px;
 	width: 100px;
 	height: 100px;
 	border-radius: 50%;
 	border: 10px solid red;
 	background-color: #20213A;
+}
+
+#cbox{
+	height:100px;
+	width:100px;
+	border: 2px solid purple;
+}
+
+.snappoint{
+
+}
+/*Margin:top right down left*/
+/*12 o clock*/
+#snappoint1{
+	position: absolute;
+	height:120px;
+	width: 120px;
+	border: 2px solid green;
+	margin: -50px 0 0 650px;
+}
+/*1 oclock*/
+#snappoint2{
+	position: absolute;
+	height:120px;
+	width: 120px;
+	border: 2px solid green;
+	margin: 0px 0 0 800px;
+}
+
+/*3 oclock*/
+#snappoint3{
+	position: absolute;
+	height:120px;
+	width: 120px;
+	border: 2px solid green;
+	margin:150px 0 0 875px;
+}
+/*4 o clock*/
+#snappoint4{
+	position: absolute;
+	height:120px;
+	width: 120px;
+	border: 2px solid green;
+	margin:325px 0 0 850px;
+}
+
+/*6 o clock*/
+#snappoint5{
+	position: absolute;
+	height:120px;
+	width: 120px;
+	border: 2px solid green;
+	margin:425px 0 0 650px;
+}
+
+#snappoint6{
+	position: absolute;
+	height:120px;
+	width: 120px;
+	border: 2px solid green;
+	margin:0px 0 0 500px;
+}
+
+#snappoint7{
+	position: absolute;
+	height:120px;
+	width: 120px;
+	border: 2px solid green;
+	margin:0px 0 0 500px;
+}
+
+#snappoint8{
+	position: absolute;
+	height:120px;
+	width: 120px;
+	border: 2px solid green;
+	margin:0px 0 0 500px;
 }
 
 
