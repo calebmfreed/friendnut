@@ -30,6 +30,21 @@
 	border: 3px solid #60C3A2;
 }
 
+.propic{
+	position: relative;
+	top: 12.5px;
+	left:12.5px;
+	height: 250px;
+	width: 250px;
+	border-radius: 50%;
+}
+
+#lbutton{
+	position: absolute;
+	right:10px;
+	top:10px;
+}
+
 .bubble{
 	z-index: 1;
 	position:absolute;
@@ -149,4 +164,8 @@ h1{
 
 body {
 	background-color: #20213A;
+}
+
+@media (handheld){
+
 }

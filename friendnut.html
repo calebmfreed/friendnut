@@ -43,7 +43,7 @@ function logout(){
       console.log(response.authResponse)
       var accessToken = response.authResponse.accessToken;
       console.log(accessToken);
-
+      getFBPicture();
       testAPI();
     } else if (response.status === 'not_authorized') {
       // In this case, the person is logged into Facebook, but not into the app, so we call
@@ -85,29 +85,35 @@ function logout(){
     FB.api('/me', function(response) {
       console.log('Good to see you, ' + response.name + '.');
     });
-  }
+	}
+    function getFBPicture(){
+    	FB.api("/me/picture?height=200&width=200",function(response) {
+    		console.log(response);
+    		    var $photo = $('#propic');
+
+    		if(response && !response.error)
+    		{
+
+				 var profileImage = response.data.url.split('https://')[1], //remove https to avoid any cert issues
+            randomNumber = Math.floor(Math.random()*256);
+ 
+			//remove if there and add image element to dom to show without refresh
+
+			//add random number to reduce the frequency of cached images showing
+			$photo.append('<img class="propic" style="border-radius:50%" src=\"http://' + profileImage + '?' + randomNumber + '\">');
+
+    		}
+    	});
+    }
+ 
 </script>
 
 
 </head>
 <body>
-
-<input id="clickMe" type="button" value="LogOut" onclick="logout();" />
-
-
-<!-- <form action="http://google.com">
-    <input type="submit" value="Go to Google">
-</form> -->
-
-
-
-
-<!--
-  Below we include the Login Button social plugin. This button uses the JavaScript SDK to
-  present a graphical Login button that triggers the FB.login() function when clicked. -->
-<fb:logout-button show-faces="true" width="200" max-rows="1"></fb:logout-button>
-<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
 <div id="fb-root"></div>
+
+ <div id="lbutton" class="fb-login-button" data-max-rows="3" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true"></div>
 
 <div id = "container">
 <h1>FriendNut</h1>
@@ -130,6 +136,8 @@ function logout(){
 		<div id="outerC">
 			<div id= "innerC">
 				<div id = "imageC" class = "bottom-to-top">
+					<div id="propic">
+					</div>
 				</div>
 			</div>
 		</div>
