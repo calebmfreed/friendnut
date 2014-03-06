@@ -3,11 +3,11 @@
 	top:0;
 	width: auto; /* width + border for IE 5.x */
 	w\idth: auto; /* real width */
-	margin: auto;
+	margin: 0;
 }
 
 #outerC{
-	margin: 100px auto;
+	margin: auto;
 	height: 500px;
 	width: 500px;
 	border-radius: 50%;
@@ -42,7 +42,8 @@
 #lbutton{
 	position: absolute;
 	right:10px;
-	top:10px;
+	top:50px;
+	padding: .25em;
 }
 
 .bubble{
@@ -53,24 +54,25 @@
 	height: 100px;
 	border-radius: 50%;
 	border: 10px solid red;
-/*	background-color: #20213A;
-*/
-	background-color: white;
+	background-color: #20213A;
+
+	padding: .5em;
 }
 
-#cbox{
+/*#cbox{
 	height:100px;
 	width:100px;
 	border: 2px solid purple;
-}
+}*/
 
 #totalbox{
 	position: relative;
-	top:50px;
-	margin: auto;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	top:100px;
 	height:700px;
 	width: 700px;
-	border: 2px solid red;
 }
 
 .snappoint{
@@ -80,76 +82,89 @@
 /*12 o clock*/
 #snappoint1{
 	position: absolute;
-	height:120px;
-	width: 120px;
+	height:116px;
+	width: 116px;
 	border: 2px solid green;
-	top:50px;
+	top:-50px;
 	left:290px;
+	border-radius: 50%;
 }
 /*1 oclock*/
 #snappoint2{
 	position: absolute;
-	height:120px;
-	width: 120px;
+	height:116px;
+	width: 116px;
 	border: 2px solid green;
-	top: 110px;
+	top: 20px;
 	right: 110px;
+	border-radius: 50%;
+
 }
 
 /*3 oclock*/
 #snappoint3{
 	position: absolute;
-	height:120px;
-	width: 120px;
+	height:116px;
+	width: 116px;
 	border: 2px solid green;
-	top: 290px;
+	top: 190px;
 	right: 50px;
+	border-radius: 50%;
+
 }
 /*4 o clock*/
 #snappoint4{
 	position: absolute;
-	height:120px;
-	width: 120px;
+	height:116px;
+	width: 116px;
 	border: 2px solid green;
-	bottom: 110px;
+	bottom: 210px;
 	right: 110px;
+	border-radius: 50%;
+
 }
 
 /*6 o clock*/
 #snappoint5{
 	position: absolute;
-	height:120px;
-	width: 120px;
+	height:116px;
+	width: 116px;
 	border: 2px solid green;
-	top:530px;
+	bottom: 150px;
 	left:290px;
+	border-radius: 50%;
+
 }
 
 #snappoint6{
 	position: absolute;
-	height:120px;
-	width: 120px;
+	height:116px;
+	width: 116px;
 	border: 2px solid green;
-	bottom: 110px;
+	bottom: 210px;
 	left: 110px;
+	border-radius: 50%;
+
 }
 
 #snappoint7{
 	position: absolute;
-	height:120px;
-	width: 120px;
+	height:116px;
+	width: 116px;
 	border: 2px solid green;
-	top: 290px;
+	top: 190px;
 	left: 50px;
+	border-radius: 50%;
 }
 
 #snappoint8{
 	position: absolute;
-	height:120px;
-	width: 120px;
+	height:116px;
+	width: 116px;
 	border: 2px solid green;
-	top: 110px;
+	top: 10px;
 	left: 110px;
+	border-radius: 50%;
 }
 #container h1{
 	position: absolute;
