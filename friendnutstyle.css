@@ -49,14 +49,13 @@
 .bubble{
 	z-index: 1;
 	position:absolute;
-	margin:10px;
-	width: 100px;
-	height: 100px;
+/*	margin:10px;
+*/	width: 78px;
+	height: 78px;
 	border-radius: 50%;
 	border: 10px solid red;
 	background-color: #20213A;
-
-	padding: .5em;
+	padding: 10px;
 }
 
 /*#cbox{
@@ -71,7 +70,7 @@
 	margin-left: auto;
 	margin-right: auto;
 	top:100px;
-	height:700px;
+	height:600px;
 	width: 700px;
 }
 
@@ -82,8 +81,8 @@
 /*12 o clock*/
 #snappoint1{
 	position: absolute;
-	height:116px;
-	width: 116px;
+	height:114px;
+	width: 114px;
 	border: 2px solid green;
 	top:-50px;
 	left:290px;
@@ -92,8 +91,8 @@
 /*1 oclock*/
 #snappoint2{
 	position: absolute;
-	height:116px;
-	width: 116px;
+	height:114px;
+	width: 114px;
 	border: 2px solid green;
 	top: 20px;
 	right: 110px;
@@ -104,8 +103,8 @@
 /*3 oclock*/
 #snappoint3{
 	position: absolute;
-	height:116px;
-	width: 116px;
+	height:114px;
+	width: 114px;
 	border: 2px solid green;
 	top: 190px;
 	right: 50px;
@@ -115,10 +114,10 @@
 /*4 o clock*/
 #snappoint4{
 	position: absolute;
-	height:116px;
-	width: 116px;
+	height:114px;
+	width: 114px;
 	border: 2px solid green;
-	bottom: 210px;
+	bottom: 110px;
 	right: 110px;
 	border-radius: 50%;
 
@@ -127,10 +126,10 @@
 /*6 o clock*/
 #snappoint5{
 	position: absolute;
-	height:116px;
-	width: 116px;
+	height:114px;
+	width: 114px;
 	border: 2px solid green;
-	bottom: 150px;
+	bottom: 50px;
 	left:290px;
 	border-radius: 50%;
 
@@ -138,10 +137,10 @@
 
 #snappoint6{
 	position: absolute;
-	height:116px;
-	width: 116px;
+	height:114px;
+	width: 114px;
 	border: 2px solid green;
-	bottom: 210px;
+	bottom: 110px;
 	left: 110px;
 	border-radius: 50%;
 
@@ -149,8 +148,8 @@
 
 #snappoint7{
 	position: absolute;
-	height:116px;
-	width: 116px;
+	height:114px;
+	width: 114px;
 	border: 2px solid green;
 	top: 190px;
 	left: 50px;
@@ -159,8 +158,8 @@
 
 #snappoint8{
 	position: absolute;
-	height:116px;
-	width: 116px;
+	height:114px;
+	width: 114px;
 	border: 2px solid green;
 	top: 10px;
 	left: 110px;
