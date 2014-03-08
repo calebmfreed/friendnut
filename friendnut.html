@@ -6,92 +6,15 @@
   	<script src="jquery1.9.js"></script>
   	<script src="jqueryui.js"></script>
 	<link rel="stylesheet" href = "friendnutstyle.css">
-	<script>
-	var friends = new Array();
-	var listID = 0;
-	// $(function() {
-	// 	$("#circle0").draggable({snap: ".snappoint", snapMode:"inner", stop: function(event, ui) {
-	//         /* Get the possible snap targets: */
-	//         var snapped = $(this).data('ui-draggable').snapElements;
-
-	//         /* Pull out only the snap targets that are "snapping": */
-	//         var snappedTo = $.map(snapped, function(element) {
-	//             return element.snapping ? element.item : null;
-	//         });
-
-	//         /* Process the results in the snappedTo array! */
-	//         console.log(snappedTo);
- //    	}});
-	// $("#circle1").draggable({snap: ".snappoint", snapMode:"inner", stop: function(event, ui) {
- //        /* Get the possible snap targets: */
- //        var snapped = $(this).data('ui-draggable').snapElements;
-
- //        /* Pull out only the snap targets that are "snapping": */
- //        var snappedTo = $.map(snapped, function(element) {
- //            return element.snapping ? element.item : null;
- //        });
-
- //        /* Process the results in the snappedTo array! */
- //        console.log(snappedTo);
- //    }});
-	// $("#circle2").draggable({snap: ".snappoint", snapMode:"inner", stop: function(event, ui) {
- //        /* Get the possible snap targets: */
- //        var snapped = $(this).data('ui-draggable').snapElements;
-
- //        /* Pull out only the snap targets that are "snapping": */
- //        var snappedTo = $.map(snapped, function(element) {
- //            return element.snapping ? element.item : null;
- //        });
-
- //        /* Process the results in the snappedTo array! */
- //        console.log(snappedTo);
- //    }});
-	// 	$("#circle3").draggable({snap: ".snappoint", snapMode:"inner", stop: function(event, ui) {
- //        /* Get the possible snap targets: */
- //        var snapped = $(this).data('ui-draggable').snapElements;
-
- //        /* Pull out only the snap targets that are "snapping": */
- //        var snappedTo = $.map(snapped, function(element) {
- //            return element.snapping ? element.item : null;
- //        });
-
- //        /* Process the results in the snappedTo array! */
- //        console.log(snappedTo);
- //    }});
- //    	$("#circle4").draggable({snap: ".snappoint", snapMode:"inner", stop: function(event, ui) {
- //        /* Get the possible snap targets: */
- //        var snapped = $(this).data('ui-draggable').snapElements;
-
- //        /* Pull out only the snap targets that are "snapping": */
- //        var snappedTo = $.map(snapped, function(element) {
- //            return element.snapping ? element.item : null;
- //        });
-
- //        /* Process the results in the snappedTo array! */
- //        console.log(snappedTo);
- //    }});
-	// 	$("#circle5").draggable({snap: ".snappoint", snapMode:"inner", stop: function(event, ui) {
- //        /* Get the possible snap targets: */
- //        var snapped = $(this).data('ui-draggable').snapElements;
-
- //        /* Pull out only the snap targets that are "snapping": */
- //        var snappedTo = $.map(snapped, function(element) {
- //            return element.snapping ? element.item : null;
- //        });
-
- //        /* Process the results in the snappedTo array! */
- //        console.log(snappedTo);
- //    }});
-	// });
-	</script>
 
 	<script>
-function logout(){
-  FB.logout(function(response) {
-  // user is now logged out
-  console.log("logged out");
-  });
-};
+//Global variables
+
+var friends = new Array();
+var listID = 0;
+
+
+//Facebook SDK stuff
   window.fbAsyncInit = function() {
   FB.init({
     appId      : '541273012652657',
@@ -111,6 +34,13 @@ function logout(){
       // login status of the person. In this case, we're handling the situation where they 
       // have logged in to the app.
       console.log(response.authResponse)
+
+      var fbbutton = document.getElementById('lbutton');
+
+      fbbutton.style.right="0px";
+      fbbutton.style.top="40px";
+      fbbutton.style.left="auto";
+
       var accessToken = response.authResponse.accessToken;
       console.log(accessToken);
       getFBPicture();
@@ -124,22 +54,23 @@ function logout(){
       // (1) JavaScript created popup windows are blocked by most browsers unless they 
       // result from direct interaction from people using the app (such as a mouse click)
       // (2) it is a bad experience to be continually prompted to login upon page load.
-      FB.login();
+      //FB.login();
+
     } else {
       // In this case, the person is not logged into Facebook, so we call the login() 
       // function to prompt them to do so. Note that at this stage there is no indication
       // of whether they are logged into the app. If they aren't then they'll see the Login
       // dialog right after they log in to Facebook. 
       // The same caveats as above apply to the FB.login() call here.
-      FB.login(function(response) {
-   // handle the response
-   		console.log(response);
-      }, {scope: 'read_mailbox,read_friendlists'});
+   //    FB.login(function(response) {
+   // // handle the response,set the scope. We need read_friendlists
+   //    }, {scope: 'read_friendlists'});
+		$(".bubble").remove();
+		$(".propic").hide();
     }
   });
   };
 
-// console.log(FB.getAuthResponse());
 	(function(d, s, id){
 	var js, fjs = d.getElementsByTagName(s)[0];
 	if (d.getElementById(id)) {return;}
@@ -162,24 +93,29 @@ function logout(){
     function getFBPicture(){
     	FB.api("/me/picture?height=200&width=200",function(response) {
     		console.log(response);
-    		    var $photo = $('#propic');
+    		$(".propic").show();
+    		var $photo = $('#propic');
 
     		if(response && !response.error)
     		{
-				 var profileImage = response.data.url.split('https://')[1], //remove https to avoid any cert issues
-            	randomNumber = Math.floor(Math.random()*256);
- 
-				//add random number to reduce the frequency of cached images showing
-				$photo.append('<img class="propic" style="border-radius:50%" src=\"http://' + profileImage + '?' + randomNumber + '\">');
+    			if(!document.getElementById("self"))
+    			{
+					var profileImage = response.data.url.split('https://')[1], //remove https to avoid any cert issues
+	            	randomNumber = Math.floor(Math.random()*256);
+	 
+					//add random number to reduce the frequency of cached images showing
+					$photo.append('<img id="self" class="propic" style="border-radius:50%" src=\"http://' + profileImage + '?' + randomNumber + '\">');
+				}
     		}
     	});
     }
-    //Gets the facebook photos for users "close friends" and creates them.
+    //Gets the facebook infomation for users "close friends" and creates them.
     function getFriendList(){
     	FB.api("/me/friendlists", function(response){
+    		console.log(response);
     		for(thing in response.data){
     			var obj = response.data[thing];
-    			if(obj["list_type"] === "close_friends")
+    			if(obj["list_type"] === "current_city")
     			{
     				getFriends(obj["id"]);
     			}
@@ -228,18 +164,21 @@ function logout(){
 
 			if(response && !response.error)
 			{
-				var profileImage = response.data.url.split('https://')[1], //remove https to avoid any cert issues
+				//Get our profile image URL
+				var profileImage = response.data.url.split('https://')[1],
 	        	randomNumber = Math.floor(Math.random()*256);
 				friends[friendNum] = profileImage;
 				var url = 'http://'+ profileImage+'?'+randomNumber;
-				// Your existing code unmodified...
+				
+				// Create a new bubble
 				var iDiv = document.createElement('img');
 				iDiv.id = 'circle'+friendNum;
 				iDiv.className = 'bubble';
 				iDiv.className +=' ui-draggable';
 				console.log(window.innerHeight);
 
-				if((voffset*150) > window.innerHeight)
+				// Offsets depending on how many friends there are.
+				if((voffset*150) > (window.innerHeight-200))
 				{
 					hoffset++;
 					voffset = 0;
@@ -252,10 +191,10 @@ function logout(){
 					voffset++;
 
 				}
-
 				iDiv.src = url;
 				var totalBox = document.getElementById('totalbox')[0];
 				totalbox.appendChild(iDiv);
+				// Sets the bubble to draggable and also sets the function that gets called when its snapped.
 				$('#'+iDiv.id).draggable({snap: ".snappoint", snapMode:"inner", stop: function(event, ui) {
 			        /* Get the possible snap targets: */
 			        var snapped = $(this).data('ui-draggable').snapElements;
@@ -266,18 +205,10 @@ function logout(){
 			        });
 
 			        /* Process the results in the snappedTo array! */
+			        // This part tells us that a bubble was snapped in place, so this will be where we send to server.
 			        console.log(snappedTo);
 		    	}});
-				// // Now create and append to iDiv
-				// var innerDiv = document.createElement('div');
-				// innerDiv.className = 'block-2';
 
-				// The variable iDiv is still good... Just append to it.
-				// iDiv.appendChild(innerDiv);
-
-
-				//add random number to reduce the frequency of cached images showing
-				// totalBox.appendChild('<img id="circle'+friendNum+'class="bubble ui-draggable" style="border-radius:50%" src=\"http://' + profileImage + '?' + randomNumber + '\">');
 			}
 		});
     }
@@ -289,9 +220,8 @@ function logout(){
 <div id="fb-root"></div>
 <div id = "container">
 <h1>FriendNut</h1>
- <div id="lbutton" class="fb-login-button" data-scope="read_mailbox,read_friendlists"data-max-rows="3" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true"></div>
 	<div id = "totalbox">
-
+ 	<div id="lbutton" class="fb-login-button" data-scope="read_mailbox,read_friendlists"data-max-rows="3" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true"></div>
 		<div id="outerC">
 			<div id= "innerC">
 				<div id = "imageC" class = "bottom-to-top">
