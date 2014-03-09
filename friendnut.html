@@ -9,10 +9,19 @@
 
 	<script>
 //Global variables
-
+var accessToken = 0;
 var friends = new Array();
 var listID = 0;
 
+function logout(){
+	accessToken=0;
+	$(".bubble").remove();
+	$(".propic").hide();
+	voffset=0;
+	hoffset=0;
+
+
+}
 
 //Facebook SDK stuff
   window.fbAsyncInit = function() {
@@ -41,7 +50,7 @@ var listID = 0;
       fbbutton.style.top="40px";
       fbbutton.style.left="auto";
 
-      var accessToken = response.authResponse.accessToken;
+      accessToken = response.authResponse.accessToken;
       console.log(accessToken);
       getFBPicture();
       testAPI();
@@ -65,8 +74,7 @@ var listID = 0;
    //    FB.login(function(response) {
    // // handle the response,set the scope. We need read_friendlists
    //    }, {scope: 'read_friendlists'});
-		$(".bubble").remove();
-		$(".propic").hide();
+		logout();
     }
   });
   };
@@ -79,7 +87,6 @@ var listID = 0;
 	fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));
   // Load the SDK asynchronously
-
 
   // Here we run a very simple test of the Graph API after login is successful. 
   // This testAPI() function is only called in those cases. 
@@ -148,9 +155,7 @@ var listID = 0;
     		var count = 0;
 			for(var person in friends)
 			{
-				console.log(friends[person]["id"]);
 				getPictureHelper(count++);
-
 			}
 
     	}
@@ -162,7 +167,7 @@ var listID = 0;
 		{
 			//var $photo = $('#circle'+friendNum);
 
-			if(response && !response.error)
+			if(response && !response.error && accessToken != 0)
 			{
 				//Get our profile image URL
 				var profileImage = response.data.url.split('https://')[1],
@@ -175,7 +180,6 @@ var listID = 0;
 				iDiv.id = 'circle'+friendNum;
 				iDiv.className = 'bubble';
 				iDiv.className +=' ui-draggable';
-				console.log(window.innerHeight);
 
 				// Offsets depending on how many friends there are.
 				if((voffset*150) > (window.innerHeight-200))
@@ -185,12 +189,13 @@ var listID = 0;
 					iDiv.style.top=(voffset*150)+'px';
 					iDiv.style.right=-150-(hoffset*150)+'px';
 				}
-				else{
+				else
+				{
 					iDiv.style.top=(voffset*150)+'px';
 					iDiv.style.right=-150-(hoffset*150)+'px';
 					voffset++;
-
 				}
+
 				iDiv.src = url;
 				var totalBox = document.getElementById('totalbox')[0];
 				totalbox.appendChild(iDiv);
@@ -203,13 +208,10 @@ var listID = 0;
 			        var snappedTo = $.map(snapped, function(element) {
 			            return element.snapping ? element.item : null;
 			        });
-
-			        /* Process the results in the snappedTo array! */
 			        // This part tells us that a bubble was snapped in place, so this will be where we send to server.
 			        console.log(snappedTo);
 		    	}});
-
-			}
+		    }
 		});
     }
  
@@ -223,7 +225,7 @@ var listID = 0;
 	<div id = "totalbox">
  	<div id="lbutton" class="fb-login-button" data-scope="read_mailbox,read_friendlists"data-max-rows="3" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true"></div>
 		<div id="outerC">
-			<div id= "innerC">
+			<div id="innerC">
 				<div id = "imageC" class = "bottom-to-top">
 					<div id="propic">
 					</div>
