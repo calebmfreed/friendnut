@@ -152,6 +152,7 @@ function logout(){
     }
   var hoffset = 0;
   var voffset = 0;
+	var left = 0;
     function getPictureHelper(friendNum){
     FB.api(friends[friendNum]["id"]+'/picture?width=100&height=100', function(response)
     {
@@ -172,6 +173,7 @@ function logout(){
         iDiv.className +=' ui-draggable';
 
         // Offsets depending on how many friends there are.
+				/**
         if((voffset*150) > (window.innerHeight-200))
         {
           hoffset++;
@@ -185,7 +187,23 @@ function logout(){
           iDiv.style.right=-150-(hoffset*150)+'px';
           voffset++;
         }
-
+				**/
+				if (left == 0)
+				{
+					hoffset = Math.floor(Math.random()*300)+50;
+					voffset = Math.floor(Math.random()*400);
+      	  		iDiv.style.top=(voffset)+'px';
+      	  		iDiv.style.right=0-(hoffset)+'px';
+					left = 1;
+				}
+				else
+				{
+					hoffset = Math.floor(Math.random()*300)+650;
+					voffset = Math.floor(Math.random()*400);
+      	  		iDiv.style.top=(voffset)+'px';
+      	  		iDiv.style.right=(hoffset)+'px';
+					left = 0;
+				}
         iDiv.src = url;
         var totalBox = document.getElementById('totalbox')[0];
         totalbox.appendChild(iDiv);
