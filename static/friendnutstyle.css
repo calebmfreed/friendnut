@@ -50,14 +50,15 @@
 	border: 10px solid #280F32;
 	background-color: #20213A;
 	padding: 10px;
-    float: left;
     display: block;
     border-radius:50%;
-    -moz-transition: opacity .3s linear;
+/*    cursor: move;
+*/    -moz-transition: opacity .3s linear;
     -webkit-transition: opacity .3s linear;
     -ms-transition: opacity .3s linear;
     -o-transition: opacity .3s linear;
     transition: opacity .3s linear;
+    opacity: .2;
 }
 
 /*#cbox{
@@ -128,25 +129,37 @@
 	left: 110px;
 }
 
-#wrap {
+/*#wrap {
 	position: absolute;
     overflow: hidden;
     top:0px;
     width: 860px;
     height:800px;
     margin: auto;
-  }
+  }*/
   
  .tint {
-    overflow: hidden;
-    float: left;
-    background: red;
+    position: absolute;
+    width:118px;
+    height:118px;
+    background:#280F32;
+    border: .5px #21213A;
     border-radius:50%;
-    margin: 0 20px 20px 0;
   }
 
+.name{
+
+	position: absolute;
+	text-align:center;
+	top:30px;
+	left:10px;
+	width: 100px;
+	word-wrap: break-word;
+
+}
+
 .bubble:hover {
-    opacity: .5;
+    opacity: 1.0;
     cursor: pointer;
   }
 
