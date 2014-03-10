@@ -1,11 +1,4 @@
-#container{
-	position: relative;
-	top:0;
-	width: auto; /* width + border for IE 5.x */
-	width: auto; /* real width */
-	margin: 0;
-}
-
+/**/
 #outerC{
 	margin: auto;
 	height: 500px;
@@ -40,10 +33,11 @@
 }
 
 #lbutton{
-	position: fixed;
-	left:650px;
-	top:340px;
-	padding: .25em;
+	position: absolute;
+	display: block;
+	right:0px;
+	bottom:0px;
+	overflow: hidden;
 }
 
 .bubble{
@@ -56,6 +50,7 @@
 	border: 10px solid #280F32;
 	background-color: #20213A;
 	padding: 10px;
+
 }
 
 /*#cbox{
@@ -125,19 +120,47 @@
 	top: 10px;
 	left: 110px;
 }
-#container h1{
-	position: fixed;
-}
 
-h1{
-	color: white;
+.wrap {
+    overflow: hidden;
+    width: 78px;
+    margin: auto;
+  }
+  
+ .tint {
+    overflow: hidden;
+    float: left;
+    background: blue;
+    margin: 0 20px 20px 0;
+  }
+
+  img {
+    float: left;
+    display: block;
+    -moz-transition: opacity .3s linear;
+    -webkit-transition: opacity .3s linear;
+    -ms-transition: opacity .3s linear;
+    -o-transition: opacity .3s linear;
+    transition: opacity .3s linear;
+  }
+  img:hover {
+    opacity: .5;
+    cursor: pointer;
+  }
+
+#header{
+	color:white;
 	font-size: 3em;
-	padding: .25em 0 0 1em;
+    position: absolute;
+    right: 0;
+    bottom: 50px;
+    margin-right: 10px;
+    margin-bottom: 0px;
 }
 
 body {
 	background-color: #21213A;
-    font-family: 'Dorsa', sans-serif;
+	font-family: 'Unica One', cursive;
 }
 
 @media (handheld){
