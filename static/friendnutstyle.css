@@ -1,11 +1,4 @@
-#container{
-	position: relative;
-	top:0;
-	width: auto; /* width + border for IE 5.x */
-	width: auto; /* real width */
-	margin: 0;
-}
-
+/**/
 #outerC{
 	margin: auto;
 	height: 500px;
@@ -40,10 +33,11 @@
 }
 
 #lbutton{
-	position: fixed;
-	left:650px;
-	top:340px;
-	padding: .25em;
+	position: absolute;
+	display: block;
+	right:0px;
+	bottom:0px;
+	overflow: hidden;
 }
 
 .bubble{
@@ -126,9 +120,6 @@
 	top: 10px;
 	left: 110px;
 }
-#container h1{
-	position: fixed;
-}
 
 .wrap {
     overflow: hidden;
@@ -157,15 +148,19 @@
     cursor: pointer;
   }
 
-h1{
-	color: white;
+#header{
+	color:white;
 	font-size: 3em;
-	padding: .25em 0 0 1em;
+    position: absolute;
+    right: 0;
+    bottom: 50px;
+    margin-right: 10px;
+    margin-bottom: 0px;
 }
 
 body {
 	background-color: #21213A;
-    font-family: 'Dorsa', sans-serif;
+	font-family: 'Unica One', cursive;
 }
 
 @media (handheld){
