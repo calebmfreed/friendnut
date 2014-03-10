@@ -9,10 +9,69 @@ function logout(){
   $(".propic").hide();
   voffset=0;
   hoffset=0;
-
-
 }
 
+function getInfo(accessT, friendN)
+{
+  console.log(friends[friendN]);
+  var URL ='http://localhost:8000/sentiment?access_token='+accessT+'&friend_id='+friends[friendN].id;
+  $.getJSON(URL,function(data){
+    console.log(data.sentiment);
+    setColor(data.sentiment,friendN);
+  });
+}
+
+function setColor(sentiment, friendN)
+{
+    var color = '#000000';
+
+    if(sentiment < -.8)
+    {
+      color = '#ED2A7B';
+    }
+    else if(sentiment <-.6)
+    {
+      color = '#DD3B7F';
+    }
+    else if(sentiment < -.4)
+    {
+      color='#CD4B83';
+    }
+    else if(sentiment < -.2)
+    {
+      color = '#BC5C86';
+    }
+    else if(sentiment < 0)
+    {
+      color = '#AC6D8A';
+    }
+    else if(sentiment < .2)
+    {
+      color = '#9C7D8E';
+    }
+    else if(sentiment < .4)
+    {
+      color = '#8C8E92';
+    }
+    else if(sentiment < .6)
+    {
+      color = '#7B9F95';
+    }
+    else if(sentiment < .8)
+    {
+      color = '#6BAF99';
+    }
+    else if(sentiment < 1.2)
+    {
+      color = '#5BC09D';
+    }
+
+    // $('#circle'+friendN).animate({"border-color:"+color});
+    $('#circle'+friendN).animate({ borderTopColor: color, borderLeftColor: color, borderRightColor: color, borderBottomColor: color }, 1000);
+
+    // var circleToChange = document.getElementById('circle'+friendN);
+    // circleToChange.style.borderColor = color;
+}
 //Facebook SDK stuff
   window.fbAsyncInit = function() {
   FB.init({
@@ -89,19 +148,18 @@ function logout(){
     function getFBPicture(){
       FB.api("/me/picture?height=200&width=200",function(response) {
         console.log(response);
-        $(".propic").show();
-        var $photo = $('#propic');
+        $("self").remove();
+        var $photo = $('imageC');
 
         if(response && !response.error)
         {
-          if(!document.getElementById("self"))
-          {
+          
           var profileImage = response.data.url.split('https://')[1], //remove https to avoid any cert issues
                 randomNumber = Math.floor(Math.random()*256);
 
           //add random number to reduce the frequency of cached images showing
           $photo.append('<img id="self" class="propic" style="border-radius:50%" src=\"http://' + profileImage + '?' + randomNumber + '\">');
-        }
+        
         }
       });
     }
@@ -133,7 +191,7 @@ function logout(){
           friends[friend] = thing;
 
         }
-        console.log(friends);
+        console.log('Farray'+friends);
         getFriendPictures();
       });
     }
@@ -142,11 +200,10 @@ function logout(){
       if(friends)
       {
         var count = 0;
-      for(var person in friends)
-      {
-        getPictureHelper(count++);
-      }
-
+        for(var person in friends)
+        {
+          getPictureHelper(count++);
+        }
       }
     }
   var hoffset = 0;
@@ -162,7 +219,7 @@ function logout(){
         //Get our profile image URL
         var profileImage = response.data.url.split('https://')[1],
             randomNumber = Math.floor(Math.random()*256);
-        friends[friendNum] = profileImage;
+        friends[friendNum].photo = profileImage;
         var url = 'http://'+ profileImage+'?'+randomNumber;
 
         // Create a new bubble
@@ -171,22 +228,6 @@ function logout(){
         iDiv.className = 'bubble';
         iDiv.className +=' ui-draggable';
 
-        // Offsets depending on how many friends there are.
-				/**
-        if((voffset*150) > (window.innerHeight-200))
-        {
-          hoffset++;
-          voffset = 0;
-          iDiv.style.top=(voffset*150)+'px';
-          iDiv.style.right=-150-(hoffset*150)+'px';
-        }
-        else
-        {
-          iDiv.style.top=(voffset*150)+'px';
-          iDiv.style.right=-150-(hoffset*150)+'px';
-          voffset++;
-        }
-				**/
 				if (left == 0)
 				{
 					hoffset = Math.floor(Math.random()*300)+50;
@@ -199,15 +240,15 @@ function logout(){
 				{
 					hoffset = Math.floor(Math.random()*300)+650;
 					voffset = Math.floor(Math.random()*400);
-      	  		iDiv.style.top=(voffset)+'px';
-      	  		iDiv.style.right=(hoffset)+'px';
+      	  iDiv.style.top=(voffset)+'px';
+      	  iDiv.style.right=(hoffset)+'px';
 					left = 0;
 				}
         iDiv.src = url;
-        var totalBox = document.getElementById('totalbox')[0];
+        var totalBox = document.getElementById('totalBox');
         totalbox.appendChild(iDiv);
         // Sets the bubble to draggable and also sets the function that gets called when its snapped.
-        $('#'+iDiv.id).draggable({snap: ".snappoint", snapMode:"inner", stop: function(event, ui) {
+        $('#'+iDiv.id).draggable({snap: ".snappoint",stack:".bubble", snapMode:"inner", stop: function(event, ui) {
               /* Get the possible snap targets: */
               var snapped = $(this).data('ui-draggable').snapElements;
 
@@ -216,16 +257,13 @@ function logout(){
                   return element.snapping ? element.item : null;
               });
               // This part tells us that a bubble was snapped in place, so this will be where we send to server.
-              console.log(snappedTo);
-          }});
-    
-        $(function() {
-         
-          $('bubble').each(function() {
-            $(this).wrap('<figure class="tint">WORDS</figure>');
-          });
+              if(snappedTo.length)
+              {
+                  getInfo(accessToken,friendNum);
+              }
 
-        });
+          }});    
+          // $('#'+iDiv.id).wrap('<figure class="tint"></figure>');
         }
     });
     }

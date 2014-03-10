@@ -37,11 +37,11 @@
 	display: block;
 	right:0px;
 	bottom:0px;
-	overflow: hidden;
+	margin-bottom: 10px;
+	margin-right: 10px;
 }
 
 .bubble{
-	z-index: 1;
 	position:absolute;
 /*	margin:10px;
 */	width: 78px;
@@ -50,7 +50,14 @@
 	border: 10px solid #280F32;
 	background-color: #20213A;
 	padding: 10px;
-
+    float: left;
+    display: block;
+    border-radius:50%;
+    -moz-transition: opacity .3s linear;
+    -webkit-transition: opacity .3s linear;
+    -ms-transition: opacity .3s linear;
+    -o-transition: opacity .3s linear;
+    transition: opacity .3s linear;
 }
 
 /*#cbox{
@@ -121,29 +128,24 @@
 	left: 110px;
 }
 
-.wrap {
+#wrap {
+	position: absolute;
     overflow: hidden;
-    width: 78px;
+    top:0px;
+    width: 860px;
+    height:800px;
     margin: auto;
   }
   
  .tint {
     overflow: hidden;
     float: left;
-    background: blue;
+    background: red;
+    border-radius:50%;
     margin: 0 20px 20px 0;
   }
 
-  img {
-    float: left;
-    display: block;
-    -moz-transition: opacity .3s linear;
-    -webkit-transition: opacity .3s linear;
-    -ms-transition: opacity .3s linear;
-    -o-transition: opacity .3s linear;
-    transition: opacity .3s linear;
-  }
-  img:hover {
+.bubble:hover {
     opacity: .5;
     cursor: pointer;
   }
@@ -153,14 +155,15 @@
 	font-size: 3em;
     position: absolute;
     right: 0;
-    bottom: 50px;
+    bottom: 30px;
     margin-right: 10px;
     margin-bottom: 0px;
 }
 
 body {
 	background-color: #21213A;
-	font-family: 'Unica One', cursive;
+	font-family: 'Cambo', serif;
+
 }
 
 @media (handheld){
