@@ -5,7 +5,7 @@ var sentiment = require('sentiment');
 
 var app = express();
 
-/* Response should be {access_token: 12345, friend_id: 54321} */
+/* Request should be {access_token: 12345, friend_id: 54321} */
 app.get('/sentiment', function(request, api_response) {
   var response = {};
 
