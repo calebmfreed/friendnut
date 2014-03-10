@@ -112,7 +112,7 @@ function logout(){
         console.log(response);
         for(thing in response.data){
           var obj = response.data[thing];
-          if(obj["list_type"] === "current_city")
+          if(obj["list_type"] === "close_friends")
           {
             getFriends(obj["id"]);
           }
