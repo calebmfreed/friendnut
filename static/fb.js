@@ -37,8 +37,7 @@ function logout(){
       var fbbutton = document.getElementById('lbutton');
 
       fbbutton.style.right="0px";
-      fbbutton.style.top="40px";
-      fbbutton.style.left="auto";
+      fbbutton.style.bottom="0px";
 
       accessToken = response.authResponse.accessToken;
       console.log(accessToken);
