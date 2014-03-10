@@ -201,6 +201,14 @@ function logout(){
               // This part tells us that a bubble was snapped in place, so this will be where we send to server.
               console.log(snappedTo);
           }});
+    
+        $(function() {
+         
+          $('bubble').each(function() {
+            $(this).wrap('<figure class="tint">WORDS</figure>');
+          });
+
+        });
         }
     });
     }

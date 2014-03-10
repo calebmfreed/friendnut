@@ -56,6 +56,7 @@
 	border: 10px solid #280F32;
 	background-color: #20213A;
 	padding: 10px;
+
 }
 
 /*#cbox{
@@ -128,6 +129,33 @@
 #container h1{
 	position: fixed;
 }
+
+.wrap {
+    overflow: hidden;
+    width: 78px;
+    margin: auto;
+  }
+  
+ .tint {
+    overflow: hidden;
+    float: left;
+    background: blue;
+    margin: 0 20px 20px 0;
+  }
+
+  img {
+    float: left;
+    display: block;
+    -moz-transition: opacity .3s linear;
+    -webkit-transition: opacity .3s linear;
+    -ms-transition: opacity .3s linear;
+    -o-transition: opacity .3s linear;
+    transition: opacity .3s linear;
+  }
+  img:hover {
+    opacity: .5;
+    cursor: pointer;
+  }
 
 h1{
 	color: white;
