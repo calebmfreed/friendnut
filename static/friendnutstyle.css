@@ -2,7 +2,7 @@
 	position: relative;
 	top:0;
 	width: auto; /* width + border for IE 5.x */
-	w\idth: auto; /* real width */
+	width: auto; /* real width */
 	margin: 0;
 }
 
@@ -12,14 +12,14 @@
 	width: 500px;
 	border-radius: 50%;
 	border: 3px solid;
-	border-color: #EE217A;
+	border-color: #ED2A7B;
 }
 #innerC{
 	margin:8px auto;
 	height: 480px;
 	width: 480px;
 	border-radius: 50%;
-	border: 3px solid #83AA91;
+	border: 3px solid #ED2A7B;
 }
 
 #imageC{
@@ -27,7 +27,7 @@
 	height: 275px;
 	width: 275px;
 	border-radius: 50%;
-	border: 3px solid #60C3A2;
+	border: 3px solid #ED217B;
 }
 
 .propic{
@@ -53,7 +53,7 @@
 */	width: 78px;
 	height: 78px;
 	border-radius: 50%;
-	border: 10px solid purple;
+	border: 10px solid #280F32;
 	background-color: #20213A;
 	padding: 10px;
 }
@@ -69,115 +69,74 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	top:100px;
+	top:140px;
 	height:600px;
 	width: 700px;
 }
 
 .snappoint{
-
+    position: absolute;
+    height: 114px;
+    width: 114px;
+    border: 2px solid #5BC09D;
+    border-radius: 50%;
 }
 /*Margin:top right down left*/
 /*12 o clock*/
 #snappoint1{
-	position: absolute;
-	height:114px;
-	width: 114px;
-	border: 2px solid green;
 	top:-50px;
 	left:290px;
-	border-radius: 50%;
 }
 /*1 oclock*/
 #snappoint2{
-	position: absolute;
-	height:114px;
-	width: 114px;
-	border: 2px solid green;
 	top: 20px;
 	right: 110px;
-	border-radius: 50%;
-
 }
 
 /*3 oclock*/
 #snappoint3{
-	position: absolute;
-	height:114px;
-	width: 114px;
-	border: 2px solid green;
 	top: 190px;
 	right: 50px;
-	border-radius: 50%;
-
 }
 /*4 o clock*/
 #snappoint4{
-	position: absolute;
-	height:114px;
-	width: 114px;
-	border: 2px solid green;
 	bottom: 110px;
 	right: 110px;
-	border-radius: 50%;
-
 }
 
 /*6 o clock*/
 #snappoint5{
-	position: absolute;
-	height:114px;
-	width: 114px;
-	border: 2px solid green;
 	bottom: 50px;
 	left:290px;
-	border-radius: 50%;
-
 }
 
 #snappoint6{
-	position: absolute;
-	height:114px;
-	width: 114px;
-	border: 2px solid green;
 	bottom: 110px;
 	left: 110px;
-	border-radius: 50%;
-
 }
 
 #snappoint7{
-	position: absolute;
-	height:114px;
-	width: 114px;
-	border: 2px solid green;
 	top: 190px;
 	left: 50px;
-	border-radius: 50%;
 }
 
 #snappoint8{
-	position: absolute;
-	height:114px;
-	width: 114px;
-	border: 2px solid green;
 	top: 10px;
 	left: 110px;
-	border-radius: 50%;
 }
 #container h1{
 	position: fixed;
 }
 
 h1{
-	font-family: "helvetica";
 	color: white;
 	font-size: 3em;
 	padding: .25em 0 0 1em;
 }
 
 body {
-	background-color: #20213A;
+	background-color: #21213A;
+    font-family: 'Dorsa', sans-serif;
 }
 
 @media (handheld){
