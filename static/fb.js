@@ -311,7 +311,10 @@ function getPictureHelper(friendNum, fid){
 
         cover.appendChild(header);
         cover.appendChild(iDiv);
-        $("#totalbox").append(cover).fadeIn("slow");
+        totalbox.appendChild(cover);
+        $(cover).hide();
+        $(cover).fadeIn("slow");
+
         // $("#"+iDiv.id).wrap('<figure id=circle'+friendNum+'class="tint"></figure>');
         // Sets the bubble to draggable and also sets the function that gets called when its snapped.
         $('#'+cover.id).draggable({snap: ".snappoint",stack:".bubble", snapMode:"inner", stop: function(event, ui) {

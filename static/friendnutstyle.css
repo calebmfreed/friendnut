@@ -147,6 +147,13 @@
     border-radius:50%;
   }
 
+  .ui-autocomplete {
+    max-height: 500px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+  }
+
 .name{
 
 	position: absolute;
