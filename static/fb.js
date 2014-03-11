@@ -156,7 +156,9 @@ function testAPI() {
   });
 }
 
-//For the search function, get all friens
+
+//For the search function, get all friends
+
 function getAllFriends() {
   FB.api('/me/friends', function(response) {
     var data = response["data"];
