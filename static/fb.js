@@ -24,10 +24,8 @@ function logout(){
 
 function getInfo(accessT, friendN)
 {
-  console.log(friends[friendN]);
   var URL ='http://localhost:8000/sentiment?access_token='+accessT+'&friend_id='+friends[friendN].id;
   $.getJSON(URL,function(data){
-    console.log(data.sentiment);
     setColor(data.sentiment,friendN);
   });
 }
@@ -102,16 +100,13 @@ function setColor(sentiment, friendN)
       // The response object is returned with a status field that lets the app know the current
       // login status of the person. In this case, we're handling the situation where they
       // have logged in to the app.
-      console.log(response.authResponse)
 
       var fbbutton = document.getElementById('lbutton');
 
       fbbutton.style.right="0px";
       fbbutton.style.bottom="0px";
       accessToken = response.authResponse.accessToken;
-      console.log(accessToken);
       getFBPicture();
-      testAPI();
       getFriendList();
       getAllFriends();
 
@@ -148,16 +143,6 @@ function setColor(sentiment, friendN)
   }(document, 'script', 'facebook-jssdk'));
   // Load the SDK asynchronously
 
-  // Here we run a very simple test of the Graph API after login is successful.
-  // This testAPI() function is only called in those cases.
-function testAPI() {
-  console.log('Welcome!  Fetching your information.... ');
-  FB.api('/me', function(response) {
-    console.log('Good to see you, ' + response.name + '.');
-  });
-}
-
-
 //For the search function, get all friends
 
 function getAllFriends() {
@@ -175,7 +160,6 @@ function getAllFriends() {
       source: ALLfriends,
       //On select, do things
       select: function(event,ui){
-        console.log(ui.item['name']);
         friends.push(ui.item);
         addBubble();
       }
@@ -190,7 +174,6 @@ function addBubble()
   // Gets the users facebook picture and places it in the center
 function getFBPicture(){
   FB.api("/me/picture?height=200&width=200",function(response) {
-    console.log(response);
 
     if(response && !response.error)
     {
@@ -212,7 +195,6 @@ function getFBPicture(){
     //Gets the facebook infomation for users "close friends" and creates them.
 function getFriendList(){
   FB.api("/me/friendlists", function(response){
-    console.log(response);
     for(thing in response.data){
       var obj = response.data[thing];
       if(obj["list_type"] === "close_friends")
@@ -227,7 +209,6 @@ function getFriendList(){
 function getFriends(flistID)
 {
   FB.api(flistID+'/members', function(response){
-    console.log(response.data);
     for(var friend in response.data)
     {
       thing = new Object();
@@ -237,7 +218,6 @@ function getFriends(flistID)
       friends[friend] = thing;
 
     }
-    console.log('Farray'+friends);
     getFriendPictures();
   });
 }
@@ -292,7 +272,7 @@ function getPictureHelper(friendNum, fid){
 
 				if (left == 0)
 				{
-					hoffset = Math.floor(Math.random()*300)+50;
+					hoffset = Math.floor(Math.random()*300)+100;
 					voffset = Math.floor(Math.random()*400);
       	  cover.style.top=(voffset)+'px';
       	  cover.style.right=0-(hoffset)+'px';
@@ -300,12 +280,13 @@ function getPictureHelper(friendNum, fid){
 				}
 				else
 				{
-					hoffset = Math.floor(Math.random()*300)+650;
+					hoffset = Math.floor(Math.random()*300)+600;
 					voffset = Math.floor(Math.random()*400);
       	  cover.style.top=(voffset)+'px';
       	  cover.style.right=(hoffset)+'px';
 					left = 0;
 				}
+
         iDiv.src = url;
         var totalBox = document.getElementById('totalBox');
 
@@ -317,7 +298,7 @@ function getPictureHelper(friendNum, fid){
 
         // $("#"+iDiv.id).wrap('<figure id=circle'+friendNum+'class="tint"></figure>');
         // Sets the bubble to draggable and also sets the function that gets called when its snapped.
-        $('#'+cover.id).draggable({snap: ".snappoint",stack:".bubble", snapMode:"inner", stop: function(event, ui) {
+        $('#'+cover.id).draggable({snap: ".snappoint",stack:".bubble",snapTolerance:"40", snapMode:"inner", stop: function(event, ui) {
               /* Get the possible snap targets: */
               var snapped = $(this).data('ui-draggable').snapElements;
 
