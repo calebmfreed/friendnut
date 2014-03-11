@@ -1,7 +1,8 @@
 //Global variables
 var accessToken = 0;
 var friends = new Array();
-var listID = 0;
+var ALLfriends = new Array();
+var testA = ["guy1", "guy2","guy3","else"];
 
 function logout(){
   accessToken=0;
@@ -15,7 +16,10 @@ function logout(){
   $(".propic").hide();
   voffset=0;
   hoffset=0;
+  ALLfriends.length = 0;
+  friends.length=0;
 }
+
 
 function getInfo(accessT, friendN)
 {
@@ -103,12 +107,13 @@ function setColor(sentiment, friendN)
 
       fbbutton.style.right="0px";
       fbbutton.style.bottom="0px";
-
       accessToken = response.authResponse.accessToken;
       console.log(accessToken);
       getFBPicture();
       testAPI();
       getFriendList();
+      getAllFriends();
+
     } else if (response.status === 'not_authorized') {
       // In this case, the person is logged into Facebook, but not into the app, so we call
       // FB.login() to prompt them to do so.
@@ -144,86 +149,115 @@ function setColor(sentiment, friendN)
 
   // Here we run a very simple test of the Graph API after login is successful.
   // This testAPI() function is only called in those cases.
-  function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Good to see you, ' + response.name + '.');
-    });
-  }
-  // Gets the users facebook picture and places it in the center
-    function getFBPicture(){
-      FB.api("/me/picture?height=200&width=200",function(response) {
-        console.log(response);
+function testAPI() {
+  console.log('Welcome!  Fetching your information.... ');
+  FB.api('/me', function(response) {
+    console.log('Good to see you, ' + response.name + '.');
+  });
+}
 
-        if(response && !response.error)
-        {
-          
-          var profileImage = response.data.url.split('https://')[1], //remove https to avoid any cert issues
-                randomNumber = Math.floor(Math.random()*256);
-          var here = document.getElementById("imageC");
-          var newPic = document.createElement('img');
-          newPic.className='propic';
-          newPic.src='http://' + profileImage + '?' + randomNumber;
-          newPic.id='self';
-          newPic.style.borderRadius="50%";
-          here.appendChild(newPic);
-          //add random number to reduce the frequency of cached images showing
-          // $photo.append('<img id="self" class="propic" style="border-radius:50%" src=\"http://' + profileImage + '?' + randomNumber + '\">');
-        
-        }
-      });
-    }
-    //Gets the facebook infomation for users "close friends" and creates them.
-    function getFriendList(){
-      FB.api("/me/friendlists", function(response){
-        console.log(response);
-        for(thing in response.data){
-          var obj = response.data[thing];
-          if(obj["list_type"] === "close_friends")
-          {
-            getFriends(obj["id"]);
-          }
-        }
-      });
-    }
-
-    //Uses the list id from getFriends and gets the friends with the id;
-    function getFriends(flistID)
+//For the search function, get all friens
+function getAllFriends() {
+  FB.api('/me/friends', function(response) {
+    var data = response["data"];
+    for(var guy in data)
     {
-      FB.api(flistID+'/members', function(response){
-        console.log(response.data);
-        for(var friend in response.data)
-        {
-          thing = new Object();
-          thing.name = response.data[friend]["name"];
-          thing.id = response.data[friend]["id"];
-          thing.photo= "";
-          friends[friend] = thing;
-
-        }
-        console.log('Farray'+friends);
-        getFriendPictures();
-      });
+      toAdd = new Object();
+      toAdd.name = data[guy]["name"];
+      toAdd.label = data[guy]["name"];
+      toAdd.id = data[guy]["id"];
+      ALLfriends[guy]=toAdd;
     }
+    $( "#tags" ).autocomplete({
+      source: ALLfriends,
+      //On select, do things
+      select: function(event,ui){
+        console.log(ui.item['name']);
+      }
+    });
+  });
+}
+  // Gets the users facebook picture and places it in the center
+function getFBPicture(){
+  FB.api("/me/picture?height=200&width=200",function(response) {
+    console.log(response);
 
-    function getFriendPictures(){
-      if(friends)
+    if(response && !response.error)
+    {
+      var profileImage = response.data.url.split('https://')[1], //remove https to avoid any cert issues
+        randomNumber = Math.floor(Math.random()*256);
+      var here = document.getElementById("imageC");
+      var newPic = document.createElement('img');
+      newPic.className='propic';
+      newPic.src='http://' + profileImage + '?' + randomNumber;
+      newPic.id='self';
+      newPic.style.borderRadius="50%";
+      here.appendChild(newPic);
+      //add random number to reduce the frequency of cached images showing
+      // $photo.append('<img id="self" class="propic" style="border-radius:50%" src=\"http://' + profileImage + '?' + randomNumber + '\">');
+    
+    }
+  });
+}
+    //Gets the facebook infomation for users "close friends" and creates them.
+function getFriendList(){
+  FB.api("/me/friendlists", function(response){
+    console.log(response);
+    for(thing in response.data){
+      var obj = response.data[thing];
+      if(obj["list_type"] === "close_friends")
       {
-        var count = 0;
-        for(var person in friends)
-        {
-          getPictureHelper(count++);
-        }
+        getFriends(obj["id"]);
       }
     }
-  var hoffset = 0;
-  var voffset = 0;
-	var left = 0;
-    function getPictureHelper(friendNum){
-    FB.api(friends[friendNum]["id"]+'/picture?width=100&height=100', function(response)
-    {
-      //var $photo = $('#circle'+friendNum);
+  });
+}
 
+//Uses the list id from getFriends and gets the friends with the id;
+function getFriends(flistID)
+{
+  FB.api(flistID+'/members', function(response){
+    console.log(response.data);
+    for(var friend in response.data)
+    {
+      thing = new Object();
+      thing.name = response.data[friend]["name"];
+      thing.id = response.data[friend]["id"];
+      thing.photo= "";
+      friends[friend] = thing;
+
+    }
+    console.log('Farray'+friends);
+    getFriendPictures();
+  });
+}
+
+function getFriendPictures(){
+  if(friends)
+  {
+    var count = 0;
+    for(var person in friends)
+    {
+      getPictureHelper(count++);
+    }
+  }
+}
+
+var hoffset = 0;
+var voffset = 0;
+var left = 0;
+
+function getPictureHelper(friendNum, fid){
+  var listID = 0;
+  if(fid)
+  {
+    listID = fid;
+  }
+  else{
+    listID = friends[friendNum]["id"];
+  }
+  FB.api(listID+'/picture?width=100&height=100', function(response)
+    {
       if(response && !response.error && accessToken != 0)
       {
         //Get our profile image URL
@@ -289,4 +323,4 @@ function setColor(sentiment, friendN)
 
         }
     });
-    }
+}

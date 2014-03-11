@@ -5,15 +5,16 @@
   	<link rel="stylesheet" href="jquery.css">
   	<script src="jquery1.9.js"></script>
   	<script src="jqueryui.js"></script>
+  	<script src="jquery.livequery.min.js"></script>
     <script src="fb.js"></script>
-	  <link rel="stylesheet" href = "friendnutstyle.css">
-<link href='http://fonts.googleapis.com/css?family=Cambo' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href = "friendnutstyle.css">
+	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 
 </head>
 
 <body>
 <div id="fb-root"></div>
-<div id="header">FriendNut</div>
+<div id="header">FRIENDNUT</div>
 <!-- 	<div id="wrap">
 	</div> -->
 	<div id = "totalbox">
@@ -36,8 +37,11 @@
 
 	</div>
 
+	<div id="lbutton" class="fb-login-button" data-scope="read_mailbox,read_friendlists"data-max-rows="3" data-size="small" data-show-faces="false" data-auto-logout-link="true"></div>
 
-
-		<div id="lbutton" class="fb-login-button" data-scope="read_mailbox,read_friendlists"data-max-rows="3" data-size="small" data-show-faces="false" data-auto-logout-link="true"></div>
+	<div class="ui-widget">
+  <label for="tags">Tags: </label>
+  <input id="tags">
+</div>
 </body>
 </html>
