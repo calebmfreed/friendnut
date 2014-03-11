@@ -22,6 +22,11 @@
 	border-radius: 50%;
 	border: 3px solid #ED217B;
 }
+#instructions{
+	position: absolute;
+	top:-150px;
+	color:white;
+}
 
 .propic{
 	position: relative;
