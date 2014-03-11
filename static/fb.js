@@ -298,7 +298,7 @@ function getPictureHelper(friendNum, fid){
 
         // $("#"+iDiv.id).wrap('<figure id=circle'+friendNum+'class="tint"></figure>');
         // Sets the bubble to draggable and also sets the function that gets called when its snapped.
-        $('#'+cover.id).draggable({snap: ".snappoint",stack:".bubble",snapTolerance:"40", snapMode:"inner", stop: function(event, ui) {
+        $('#'+cover.id).draggable({snap: ".snappoint",stack:".bubble", snapMode:"inner", stop: function(event, ui) {
               /* Get the possible snap targets: */
               var snapped = $(this).data('ui-draggable').snapElements;
 
@@ -307,6 +307,7 @@ function getPictureHelper(friendNum, fid){
                   return element.snapping ? element.item : null;
               });
               // This part tells us that a bubble was snapped in place, so this will be where we send to server.
+                console.log(snappedTo);
               if(snappedTo.length)
               {
                   getInfo(accessToken,friendNum);
