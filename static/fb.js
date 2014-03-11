@@ -3,6 +3,7 @@ var accessToken = 0;
 var friends = new Array();
 var ALLfriends = new Array();
 var testA = ["guy1", "guy2","guy3","else"];
+var fcount = 0;
 
 function logout(){
   accessToken=0;
@@ -175,9 +176,16 @@ function getAllFriends() {
       //On select, do things
       select: function(event,ui){
         console.log(ui.item['name']);
+        friends.push(ui.item);
+        addBubble();
       }
     });
   });
+}
+
+function addBubble()
+{
+  getPictureHelper(fcount++);
 }
   // Gets the users facebook picture and places it in the center
 function getFBPicture(){
@@ -237,10 +245,10 @@ function getFriends(flistID)
 function getFriendPictures(){
   if(friends)
   {
-    var count = 0;
+    fcount = 0;
     for(var person in friends)
     {
-      getPictureHelper(count++);
+      getPictureHelper(fcount++);
     }
   }
 }
@@ -303,7 +311,7 @@ function getPictureHelper(friendNum, fid){
 
         cover.appendChild(header);
         cover.appendChild(iDiv);
-        totalbox.appendChild(cover);
+        $("#totalbox").append(cover).fadeIn("slow");
         // $("#"+iDiv.id).wrap('<figure id=circle'+friendNum+'class="tint"></figure>');
         // Sets the bubble to draggable and also sets the function that gets called when its snapped.
         $('#'+cover.id).draggable({snap: ".snappoint",stack:".bubble", snapMode:"inner", stop: function(event, ui) {

@@ -165,12 +165,19 @@
 
 #header{
 	color:white;
-	font-size: 3em;
+	font-size: 1.5em;
     position: absolute;
     right: 0;
     bottom: 30px;
     margin-right: 10px;
     margin-bottom: 0px;
+}
+
+#search{
+	position: absolute;
+	top:10px;
+	left:10px;
+	color:white;
 }
 
 body {
