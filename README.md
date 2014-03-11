@@ -12,5 +12,5 @@ Visualize how positive or negative your friends are on Facebook.
 ### Running Locally
 
 1. `node app.js`
-2. Open browser to [http://localhost:8000](http://localhost:8000)
+2. Open browser to [http://localhost:8000/friendnut.html](http://localhost:8000/friendnut.html)
 
