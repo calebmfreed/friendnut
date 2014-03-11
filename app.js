@@ -1,4 +1,4 @@
-var port = (process.env.VCAP_APP_PORT || 8000);
+var port = (process.env.VCAP_APP_PORT || 8080);
 var express = require("express");
 var FB = require('fb');
 var sentiment = require('sentiment');

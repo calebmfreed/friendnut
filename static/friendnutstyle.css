@@ -12,7 +12,7 @@
 	height: 480px;
 	width: 480px;
 	border-radius: 50%;
-	border: 3px solid #ED2A7B;
+	border: 3px solid #5BC09D;
 }
 
 #imageC{
@@ -148,7 +148,7 @@
 #negative{
 	color:white;
 	float:left;
-	margin-left:10px;
+	margin-right:2px;
 }
 
 .colorbox{
