@@ -132,10 +132,23 @@
 #colorscale{
     margin-left: auto;
     margin-right: auto;
-    margin-top: 85px;
+    margin-top: 60px;
     //border: 2px solid black;
     height: 40px;
     width: 310px;
+    color:white;
+}
+
+#positive{
+	float:left;
+	color:white;
+	margin-left:190px;
+}
+
+#negative{
+	color:white;
+	float:left;
+	margin-left:10px;
 }
 
 .colorbox{

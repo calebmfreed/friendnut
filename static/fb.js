@@ -1,5 +1,6 @@
 //Global variables
 var accessToken = 0;
+var myID = 0;
 var friends = new Array();
 var ALLfriends = new Array();
 var testA = ["guy1", "guy2","guy3","else"];
@@ -76,8 +77,14 @@ function setColor(sentiment, friendN)
     }
 
     // $('#circle'+friendN).animate({"border-color:"+color});
-    $('#circleimg'+friendN).animate({ borderTopColor:color, borderLeftColor:color, borderRightColor:color, borderBottomColor:color }, 600);
-
+    if(friendN > -1)
+    {
+      $('#circleimg'+friendN).animate({ borderTopColor:color, borderLeftColor:color, borderRightColor:color, borderBottomColor:color }, 600);
+    }
+    else
+    {
+      $('.rings').animate({ borderTopColor:color, borderLeftColor:color, borderRightColor:color, borderBottomColor:color }, 600);
+    }
     // var circleToChange = document.getElementById('circle'+friendN);
     // circleToChange.style.borderColor = color;
 }
@@ -106,9 +113,11 @@ function setColor(sentiment, friendN)
       fbbutton.style.right="0px";
       fbbutton.style.bottom="0px";
       accessToken = response.authResponse.accessToken;
+      myID = response.authResponse.userID;
       getFBPicture();
       getFriendList();
       getAllFriends();
+      getMySentiment();
 
     } else if (response.status === 'not_authorized') {
       // In this case, the person is logged into Facebook, but not into the app, so we call
@@ -192,6 +201,14 @@ function getFBPicture(){
     }
   });
 }
+// Gets the sentiment of the user and places it around the ring
+function getMySentiment(){
+    var URL ='http://localhost:8000/sentiment?access_token='+accessToken+'&friend_id='+myID;
+  $.getJSON(URL,function(data){
+    setColor(data.sentiment,-1);
+  });
+}
+
     //Gets the facebook infomation for users "close friends" and creates them.
 function getFriendList(){
   FB.api("/me/friendlists", function(response){
