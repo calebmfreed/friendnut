@@ -8,9 +8,9 @@
   	<script src="jquery.livequery.min.js"></script>
     <script src="fb.js"></script>
 	<link rel="stylesheet" href = "friendnutstyle.css">
+	<script src="parallax.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
 	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-
 </head>
 
 <body>
@@ -30,30 +30,30 @@
 				</div>
 			</div>
 		</div>
-		<div id ="snappoint1" class = "snappoint"></div>
-		<div id ="snappoint2" class = "snappoint"></div>
-		<div id ="snappoint3" class = "snappoint"></div>
-		<div id ="snappoint4" class = "snappoint"></div>
-		<div id ="snappoint5" class = "snappoint"></div>
-		<div id ="snappoint6" class = "snappoint"></div>
-		<div id ="snappoint7" class = "snappoint"></div>
-		<div id ="snappoint8" class = "snappoint"></div>
+		<div id ="snappoint1" data-depth=".5" class = "layer snappoint"></div>
+		<div id ="snappoint2" data-depth=".5" class = "layer snappoint"></div>
+		<div id ="snappoint3" data-depth=".5" class = "layer snappoint"></div>
+		<div id ="snappoint4" data-depth=".5" class = "layer snappoint"></div>
+		<div id ="snappoint5" data-depth=".5" class = "layer snappoint"></div>
+		<div id ="snappoint6" data-depth=".5" class = "layer snappoint"></div>
+		<div id ="snappoint7" data-depth=".5" class = "layer snappoint"></div>
+		<div id ="snappoint8" data-depth=".5" class = "layer snappoint"></div>
 
    
         <div id = "colorscale">
         	<div id="negative">Negative</div>
 			<div id ="positive">Positive</div> 
 			<br>
-            <div class = "colorbox" style = "background-color: #ED217B"></div>
-            <div class = "colorbox" style = "background-color: #DD337F"></div>
-            <div class = "colorbox" style = "background-color: #CD4483"></div>
-            <div class = "colorbox" style = "background-color: #BC5686"></div>
-            <div class = "colorbox" style = "background-color: #AC688A"></div>
-            <div class = "colorbox" style = "background-color: #9C798E"></div>
-            <div class = "colorbox" style = "background-color: #8C8B92"></div>
-            <div class = "colorbox" style = "background-color: #7B9D95"></div>
-            <div class = "colorbox" style = "background-color: #6BAE99"></div>
-            <div class = "colorbox" style = "background-color: #5BC09D"></div>
+            <div class = "layer colorbox" data-depth=".5" style = "background-color: #ED217B"></div>
+            <div class = "layer colorbox" data-depth=".5" style = "background-color: #DD337F"></div>
+            <div class = "layer colorbox" data-depth=".5" style = "background-color: #CD4483"></div>
+            <div class = "layer colorbox" data-depth=".5" style = "background-color: #BC5686"></div>
+            <div class = "layer colorbox" data-depth=".5" style = "background-color: #AC688A"></div>
+            <div class = "layer colorbox" data-depth=".5" style = "background-color: #9C798E"></div>
+            <div class = "layer colorbox" data-depth=".5" style = "background-color: #8C8B92"></div>
+            <div class = "layer colorbox" data-depth=".5" style = "background-color: #7B9D95"></div>
+            <div class = "layer colorbox" data-depth=".5" style = "background-color: #6BAE99"></div>
+            <div class = "layer colorbox" data-depth=".5" style = "background-color: #5BC09D"></div>
         </div>
 	</div>
 
@@ -64,5 +64,10 @@
 		<input id="tags" placeholder="Search for Friends">
 	</div>
 
+
+	<script>
+		var scene = document.getElementById('colorscale');
+		var parallax = new Parallax(scene);
+	</script>
 </body>
 </html>

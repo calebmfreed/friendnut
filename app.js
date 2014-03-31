@@ -18,6 +18,8 @@ app.get('/sentiment', function(request, api_response) {
   var friend_id = request.query.friend_id;
 
   api_response.setHeader('Content-Type', 'application/json');
+  api_response.setHeader("Access-Control-Allow-Origin", "http://calebfreed.com");
+
 
   if (!access_token) {
     response['error'] = "Request did not contain `access_token`.";
@@ -35,7 +37,7 @@ app.get('/sentiment', function(request, api_response) {
   var total_sentiment = 0.0;
   var statuses = [];
 
-  FB.api('fql', {q: 'SELECT message FROM status WHERE uid=' + friend_id + ' LIMIT 5'}, function (res) {
+  FB.api('fql', {q: 'SELECT message FROM status WHERE uid=' + friend_id + ' LIMIT 20'}, function (res) {
     if (!res || res.error) {
       console.log(!res ? 'ERROR OCCURRED' : res.error);
       return;

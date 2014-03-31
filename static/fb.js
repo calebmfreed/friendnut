@@ -203,8 +203,10 @@ function getFBPicture(){
   });
 }
 // Gets the sentiment of the user and places it around the ring
-//For aws: http://ec2-54-186-107-225.us-west-2.compute.amazonaws.com/sentiment?access_token='+accessToken+'&friend_id='+myID;
-//Local: http://localhost:8080/sentiment?access_token='+accessToken+'&friend_id='+myID;
+//For aws: 
+//http://ec2-54-186-107-225.us-west-2.compute.amazonaws.com/sentiment?access_token='+accessToken+'&friend_id='+myID;
+//Local: 
+//http://localhost:8080/sentiment?access_token='+accessToken+'&friend_id='+myID;
 function getMySentiment(){
     var URL ='http://ec2-54-186-107-225.us-west-2.compute.amazonaws.com/sentiment?access_token='+accessToken+'&friend_id='+myID;
   $.getJSON(URL,function(data){
